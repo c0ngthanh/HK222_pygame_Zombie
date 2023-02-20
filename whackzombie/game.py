@@ -11,12 +11,19 @@ FPS = 60
 IMAGEBACKGROUND = pygame.image.load('img/bg1.png')
 IMAGEHOLE = pygame.image.load('img/hole.png')
 IMAGEHAMMER = pygame.image.load('img/hammer.png')
-holes_position = [(250,100),(250,200)]
+holes_position = [(300,100),(300,200)]
 
 class Game:
     def __init__(self) -> None:
         #Init pygame
         pygame.init()
+        #Load music
+        '''
+        pygame.mixer.init()
+        self.theme = pygame.mixer.music.load('music/theme.mp3')
+        self.hit_sound1 = pygame.mixer.music.load('music/hit_1.mp3')
+        self.hit_sound2 = pygame.mixer.music.load('music/hit_2.mp3')
+        '''
         #Create screen play
         self.screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
         pygame.display.set_caption('Smash Zombie')
@@ -34,14 +41,16 @@ class Game:
         #Display background
         self.screen.blit(self.img_background, (0, 0))
         #Display hole
-        for pos in holes_position:
-            self.screen.blit(self.img_hole, pos)
+        for x,y in holes_position:
+            self.screen.blit(self.img_hole, (x-50,y-20))
         #Display hammer
         thisHammer = pygame.transform.rotate(self.img_hammer.copy(),(60 if clicked else 30))
         hammer_x, hammer_y = pygame.mouse.get_pos()
         hammer_x -= thisHammer.get_width() / 5
         hammer_y -= thisHammer.get_height() / 4
         self.screen.blit(thisHammer, (hammer_x, hammer_y))
+        #Display zombie
+        
     
     def run(self):
         self.clicked = False
