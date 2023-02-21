@@ -171,12 +171,10 @@ class Mole:
 
     def is_hit(self, pos):
         mouseX, mouseY = pos
-
         # Top Left
         moleX1, moleY1 = self.get_hole_pos(False)
         # Bottom Right
         moleX2, moleY2 = (moleX1 + MoleConstants.MOLEWIDTH, moleY1 + MoleConstants.MOLEHEIGHT)
-
         # Check is in valid to-be hit state
         if self.showing_state != 0:
             # Check x

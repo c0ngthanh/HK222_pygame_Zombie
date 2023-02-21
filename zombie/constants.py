@@ -8,8 +8,8 @@ class GameConstants:
     Constants used for rendering of main game
     """
 
-    GAMEWIDTH       = 1200
-    GAMEHEIGHT      = 675
+    GAMEWIDTH       = 1280
+    GAMEHEIGHT      = 720
     GAMEMAXFPS      = 60
 
 
@@ -30,8 +30,8 @@ class HoleConstants:
 
     HOLEWIDTH       = 50
     HOLEHEIGHT      = int(HOLEWIDTH*(3/8))
-    HOLEROWS        = 3 # !!
-    HOLECOLUMNS     = 6 # !!
+    HOLEROWS        = 4 # !!
+    HOLECOLUMNS     = 7 # !!
 
     # Checks
     # if HOLEHEIGHT*HOLEROWS > GameConstants.GAMEHEIGHT:

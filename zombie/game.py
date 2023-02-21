@@ -1,6 +1,6 @@
 
 
-from pygame import init, quit, display, image, transform, time, mouse, event, Surface, \
+from pygame import init, quit,mixer, display, image, transform, time, mouse, event, Surface, \
     SRCALPHA, QUIT, MOUSEBUTTONDOWN, KEYDOWN, \
     K_e, K_r, K_t, K_y, K_u, K_i, K_o, K_p, K_SPACE, K_ESCAPE
 import sys
@@ -55,10 +55,10 @@ class Game:
         base_column = 100
         for row in range(Constants.HOLEROWS):
             rowY = base_row * row
-            rowY += (base_row - Constants.HOLEHEIGHT) / 2 + 200
+            rowY += (base_row - Constants.HOLEHEIGHT) / 2 + 180
             for column in range(Constants.HOLECOLUMNS):
                 thisX = base_column * column
-                thisX += (base_column - Constants.HOLEWIDTH) / 2 +300
+                thisX += (base_column - Constants.HOLEWIDTH) / 2 +280
                 self.holes.append((int(thisX), int(rowY)))
 
         # Get the text object
@@ -292,12 +292,19 @@ class Game:
         self.intro()
         quit()
     def intro(self):
+        mixer.init()
+        #Load audio file
+        mixer.music.load('assets/intro_music.mp3')
+        mixer.music.set_volume(0.2)
+        #Play the music
+        mixer.music.play()
         img = image.load('assets/intro.png')
         while True:
             self.screen.blit(img,(0,0))
             display.update()
             for e in event.get():
                 if e.type == MOUSEBUTTONDOWN:
+                    mixer.music.stop()
                     self.start()
                 if e.type == QUIT:
                     quit()

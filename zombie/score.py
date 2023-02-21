@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .constants import LevelConstants, GameConstants
 from .text import Text
+from pygame import mixer
 
 
 class Score:
@@ -61,6 +62,11 @@ class Score:
                                    width=GameConstants.GAMEWIDTH, background=(0, 0, 0, 0.4 * 255))
 
     def hit(self):
+        mixer.init()
+        #Load audio file
+        mixer.music.load('assets/hit_sound.mp3')
+        mixer.music.set_volume(0.2)
+        mixer.music.play()
         self.hits += 1
 
     def miss(self):
