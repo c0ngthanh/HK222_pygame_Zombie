@@ -1,5 +1,3 @@
-
-
 from pygame import init, quit,mixer, display, image, transform, time, mouse, event, Surface, \
     SRCALPHA, QUIT, MOUSEBUTTONDOWN, KEYDOWN, \
     K_e, K_r, K_t, K_y, K_u, K_i, K_o, K_p, K_SPACE, K_ESCAPE
@@ -99,7 +97,7 @@ class Game:
                 self.loop = False
                 break
 
-            gameTime, endGame = self.timerData
+            _, endGame = self.timerData
 
             if not endGame:
 
@@ -262,6 +260,8 @@ class Game:
 
         # Time's up indicator
         if self.timer and endGame:
+            mixer.music.stop()
+            
             timer_label_1 = self.text.get_label("Time's up!", scale=3, color=(0, 150, 255))
             timer_label_2 = self.text.get_label("Press space to restart...", scale=2, color=(0, 150, 255))
 
@@ -275,6 +275,12 @@ class Game:
             self.screen.blit(timer_label_2, (timer_x_2, timer_y_2))
 
     def start(self):
+        mixer.init()
+        mixer.music.load('assets/theme.mp3')
+        mixer.music.set_volume(0.2)
+        #Play the theme
+        mixer.music.play()
+        
         self.clock = time.Clock()
         self.loop = True
         while self.loop:
@@ -286,11 +292,12 @@ class Game:
 
             # Update display
             self.clock.tick(Constants.GAMEMAXFPS)
-            display.flip()
+            display.flip()            
 
     def run(self):
         self.intro()
         quit()
+    
     def intro(self):
         mixer.init()
         #Load audio file
@@ -299,13 +306,17 @@ class Game:
         #Play the music
         mixer.music.play()
         img = image.load('assets/intro.png')
-        while True:
-            self.screen.blit(img,(0,0))
-            display.update()
-            for e in event.get():
-                if e.type == MOUSEBUTTONDOWN:
-                    mixer.music.stop()
-                    self.start()
-                if e.type == QUIT:
-                    quit()
-                    sys.exit()
+        try:
+            while True:
+                img = transform.scale(img, (Constants.GAMEWIDTH, Constants.GAMEHEIGHT))
+                self.screen.blit(img,(0,0))
+                display.update()
+                for e in event.get():
+                    if e.type == MOUSEBUTTONDOWN:
+                        mixer.music.stop()
+                        self.start()
+                    if e.type == QUIT:
+                        quit()
+                        sys.exit()
+        except:
+            pass

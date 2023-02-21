@@ -64,9 +64,9 @@ class Score:
     def hit(self):
         mixer.init()
         #Load audio file
-        mixer.music.load('assets/hit_sound.mp3')
-        mixer.music.set_volume(0.2)
-        mixer.music.play()
+        sound = mixer.Sound('assets/hit_sound.mp3')
+        mixer.Sound.set_volume(sound, 0.2)
+        mixer.Sound.play(sound)
         self.hits += 1
 
     def miss(self):
