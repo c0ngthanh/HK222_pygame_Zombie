@@ -28,7 +28,7 @@ class HoleConstants:
     Constants used in the holes
     """
 
-    HOLEWIDTH       = 50
+    HOLEWIDTH       = 80
     HOLEHEIGHT      = int(HOLEWIDTH*(3/8))
     HOLEROWS        = 4 # !!
     HOLECOLUMNS     = 7 # !!

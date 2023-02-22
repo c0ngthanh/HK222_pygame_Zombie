@@ -304,7 +304,7 @@ class Game:
         mixer.init()
         #Load audio file
         mixer.music.load('assets/intro_music.mp3')
-        mixer.music.set_volume(0.2)
+        mixer.music.set_volume(1)
         #Play the music
         mixer.music.play()
         img = image.load('assets/intro.png')

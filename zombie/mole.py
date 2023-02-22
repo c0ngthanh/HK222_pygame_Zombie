@@ -16,6 +16,7 @@ class Mole:
 
     def __init__(self):
         self.a = 0
+        self.b = 0
         # Load images
 
         self.image_sprite = [image.load("assets/zombiefiles/png/male/Walk (1).png"),
@@ -29,6 +30,18 @@ class Mole:
                 image.load("assets/zombiefiles/png/male/Walk (9).png"),
                 image.load("assets/zombiefiles/png/male/Walk (10).png")]
         self.image_sprite = list(map(lambda x: transform.scale(x, (MoleConstants.MOLEWIDTH, MoleConstants.MOLEHEIGHT)),self.image_sprite))
+
+        self.image_dead = [image.load("assets/zombiefiles/png/male/Dead (1).png"),
+                image.load("assets/zombiefiles/png/male/Dead (2).png"),
+                image.load("assets/zombiefiles/png/male/Dead (3).png"),
+                image.load("assets/zombiefiles/png/male/Dead (4).png"),
+                image.load("assets/zombiefiles/png/male/Dead (5).png"),
+                image.load("assets/zombiefiles/png/male/Dead (6).png"),
+                image.load("assets/zombiefiles/png/male/Dead (7).png"),
+                image.load("assets/zombiefiles/png/male/Dead (8).png"),
+                image.load("assets/zombiefiles/png/male/Dead (9).png"),
+                image.load("assets/zombiefiles/png/male/Dead (10).png")]
+        self.image_dead = list(map(lambda x: transform.scale(x, (MoleConstants.MOLEWIDTH, MoleConstants.MOLEHEIGHT)),self.image_dead))
 
         self.img_normal = image.load(ImageConstants.IMAGEMOLENORMAL)
         self.img_normal = transform.scale(self.img_normal, (MoleConstants.MOLEWIDTH, MoleConstants.MOLEHEIGHT))
@@ -65,7 +78,9 @@ class Mole:
     @property
     def image(self):
         self.a = (self.a +1)%10
-        if self.hit != False: return self.img_hit
+        if self.hit != False:
+            self.b = min((self.b +1),9)
+            return self.image_dead[self.b]
         return self.image_sprite[self.a]
 
     def chance(self, level):
