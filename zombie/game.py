@@ -195,6 +195,8 @@ class Game:
             if mole_display[0]:
                 # Get pos and display
                 pos = mole.get_hole_pos(not endGame)
+                # animation
+                # if self.hit 
                 self.screen.blit(mole.image, pos)
 
         # Hammer

@@ -15,7 +15,21 @@ class Mole:
     """
 
     def __init__(self):
+        self.a = 0
         # Load images
+
+        self.image_sprite = [image.load("assets/zombiefiles/png/male/Walk (1).png"),
+                image.load("assets/zombiefiles/png/male/Walk (2).png"),
+                image.load("assets/zombiefiles/png/male/Walk (3).png"),
+                image.load("assets/zombiefiles/png/male/Walk (4).png"),
+                image.load("assets/zombiefiles/png/male/Walk (5).png"),
+                image.load("assets/zombiefiles/png/male/Walk (6).png"),
+                image.load("assets/zombiefiles/png/male/Walk (7).png"),
+                image.load("assets/zombiefiles/png/male/Walk (8).png"),
+                image.load("assets/zombiefiles/png/male/Walk (9).png"),
+                image.load("assets/zombiefiles/png/male/Walk (10).png")]
+        self.image_sprite = list(map(lambda x: transform.scale(x, (MoleConstants.MOLEWIDTH, MoleConstants.MOLEHEIGHT)),self.image_sprite))
+
         self.img_normal = image.load(ImageConstants.IMAGEMOLENORMAL)
         self.img_normal = transform.scale(self.img_normal, (MoleConstants.MOLEWIDTH, MoleConstants.MOLEHEIGHT))
         self.img_hit = image.load(ImageConstants.IMAGEMOLEHIT)
@@ -50,8 +64,9 @@ class Mole:
 
     @property
     def image(self):
+        self.a = (self.a +1)%10
         if self.hit != False: return self.img_hit
-        return self.img_normal
+        return self.image_sprite[self.a]
 
     def chance(self, level):
         level -= 1  # Start at 0
