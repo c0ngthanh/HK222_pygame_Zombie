@@ -190,6 +190,7 @@ class Mole:
                 frame = MoleConstants.MOLEDEPTH / self.frames * (self.frames - self.show_frame)
             else:
                 # Reset
+                self.b = 0
                 self.showing_state = 0
                 frame = MoleConstants.MOLEDEPTH
                 # Begin cooldown

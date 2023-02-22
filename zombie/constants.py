@@ -10,7 +10,7 @@ class GameConstants:
 
     GAMEWIDTH       = 1280
     GAMEHEIGHT      = 720
-    GAMEMAXFPS      = 60
+    GAMEMAXFPS      = 45
 
 
 class LevelConstants:
